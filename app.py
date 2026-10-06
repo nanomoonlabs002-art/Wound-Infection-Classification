@@ -6,7 +6,18 @@ from PIL import Image
 # -----------------------------
 # Load Model
 # -----------------------------
-model = tf.keras.models.load_model("wound_model.keras")
+import os
+import urllib.request
+import tensorflow as tf
+
+MODEL_PATH = "/tmp/wound_model.keras"
+
+MODEL_URL = "https://github.com/nanomoonlabs002-art/Wound-Infection-Classification/releases/download/v1.0/wound_model.keras"
+
+if not os.path.exists(MODEL_PATH):
+    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+
+model = tf.keras.models.load_model(MODEL_PATH)
 
 # -----------------------------
 # Page Configuration
